@@ -58,7 +58,9 @@ export function TaskCard({ task, onClick, onDelete, onDropBefore }: Props) {
         type="button"
         onClick={(e) => {
           e.stopPropagation();
-          onDelete(task);
+          if (window.confirm(`「${task.title}」を削除しますか?`)) {
+            onDelete(task);
+          }
         }}
         title="削除"
         className="absolute top-1 right-1.5 leading-none text-slate-400 hover:text-red-500"
