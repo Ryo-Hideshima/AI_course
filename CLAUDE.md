@@ -1,0 +1,11 @@
+# 開発ルール
+
+## Issue駆動開発
+- 何か変更を行う前に、GitHub Issueを作成してから作業を始める(`gh issue create`)
+- Issueには対応する作業内容を簡潔に記載する
+
+## ブランチ運用
+- `main` ブランチへの直接pushは禁止(GitHub側でブランチ保護を設定済み)
+- 作業は必ずIssueに対応するブランチを作成して行う
+- ブランチ名: `issue-<Issue番号>-<簡潔な説明>` (例: `issue-12-add-task-delete-api`)
+- 作業が完了したら、そのブランチからmainへのPull Requestを作成してマージする(レビュー承認は不要だが、PR経由のマージを必須とする)
