@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Task } from "../types/task";
 
 const PRIORITY_LABEL: Record<string, string> = {
@@ -12,10 +13,61 @@ const PRIORITY_CLASS: Record<string, string> = {
   high: "bg-red-500",
 };
 
-export function TaskCard({ task }: { task: Task }) {
+interface Props {
+  task: Task;
+  onClick: (task: Task) => void;
+  onDelete: (task: Task) => void;
+  onDropBefore: (draggedTaskId: number, targetTaskId: number, before: boolean) => void;
+}
+
+export function TaskCard({ task, onClick, onDelete, onDropBefore }: Props) {
+  const [dragOverEdge, setDragOverEdge] = useState<"top" | "bottom" | null>(null);
+
   return (
-    <div className="rounded-md bg-white p-3 shadow-sm">
-      <div className="mb-1 text-sm font-semibold text-slate-800 break-words">
+    <div
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.setData("text/plain", String(task.id));
+      }}
+      onDragOver={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const rect = e.currentTarget.getBoundingClientRect();
+        const before = e.clientY - rect.top < rect.height / 2;
+        setDragOverEdge(before ? "top" : "bottom");
+      }}
+      onDragLeave={() => setDragOverEdge(null)}
+      onDrop={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const before = dragOverEdge === "top";
+        setDragOverEdge(null);
+        const draggedId = Number(e.dataTransfer.getData("text/plain"));
+        if (draggedId) onDropBefore(draggedId, task.id, before);
+      }}
+      onClick={() => onClick(task)}
+      className={`relative cursor-pointer rounded-md bg-white p-3 shadow-sm hover:shadow-md ${
+        dragOverEdge === "top"
+          ? "shadow-[0_-3px_0_0_#0369a1]"
+          : dragOverEdge === "bottom"
+            ? "shadow-[0_3px_0_0_#0369a1]"
+            : ""
+      }`}
+    >
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          if (window.confirm(`「${task.title}」を削除しますか?`)) {
+            onDelete(task);
+          }
+        }}
+        title="削除"
+        className="absolute top-1 right-1.5 leading-none text-slate-400 hover:text-red-500"
+      >
+        ✕
+      </button>
+      <div className="mb-1 pr-4 text-sm font-semibold text-slate-800 break-words">
         {task.title}
       </div>
       {task.description && (

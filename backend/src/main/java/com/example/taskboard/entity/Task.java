@@ -32,6 +32,9 @@ public class Task {
     @Column(nullable = false)
     private String status;
 
+    @Column(nullable = false)
+    private Integer position = 0;
+
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -92,6 +95,14 @@ public class Task {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 
     public LocalDateTime getCreatedAt() {
