@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タスクボード(プロトタイプ)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>タスクボード</h1>
+
+<div class="board" id="board"></div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3>カードを追加</h3>
+    <div class="field">
+      <label>タイトル(必須)</label>
+      <input type="text" id="fieldTitle" placeholder="タスク名">
+    </div>
+    <div class="field">
+      <label>説明</label>
+      <textarea id="fieldDesc" placeholder="詳細"></textarea>
+    </div>
+    <div class="field">
+      <label>優先度</label>
+      <select id="fieldPriority">
+        <option value="">未設定</option>
+        <option value="low">低</option>
+        <option value="medium">中</option>
+        <option value="high">高</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>期限</label>
+      <input type="date" id="fieldDue">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-secondary" id="cancelBtn">キャンセル</button>
+      <button class="btn btn-primary" id="saveBtn">追加</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

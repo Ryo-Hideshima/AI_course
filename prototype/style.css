@@ -1,0 +1,169 @@
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, "Hiragino Kaku Gothic ProN", sans-serif;
+  background: #0079bf;
+  margin: 0;
+  padding: 24px;
+  min-height: 100vh;
+}
+h1 {
+  color: #fff;
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+.board {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.column {
+  background: #ebecf0;
+  border-radius: 8px;
+  width: 280px;
+  flex-shrink: 0;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 100px);
+}
+.column h2 {
+  font-size: 15px;
+  margin: 4px 4px 10px;
+  color: #172b4d;
+}
+.cards {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 20px;
+  padding-bottom: 4px;
+}
+.cards.drag-over {
+  background: #d6d9e0;
+  border-radius: 6px;
+}
+.card {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px 10px 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  cursor: grab;
+  position: relative;
+}
+.card.dragging { opacity: 0.4; }
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #172b4d;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+.card-desc {
+  font-size: 12px;
+  color: #5e6c84;
+  margin-bottom: 6px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.card-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+}
+.priority-high { background: #eb5a46; }
+.priority-medium { background: #f2d600; color: #172b4d; }
+.priority-low { background: #61bd4f; }
+.due {
+  font-size: 11px;
+  color: #5e6c84;
+  background: #f4f5f7;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.card-delete {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  border: none;
+  background: transparent;
+  color: #9aa3b0;
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px;
+}
+.card-delete:hover { color: #eb5a46; }
+.add-card-btn {
+  background: transparent;
+  border: none;
+  text-align: left;
+  color: #5e6c84;
+  padding: 8px 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+}
+.add-card-btn:hover { background: #d6d9e0; color: #172b4d; }
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(9,30,66,.54);
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  width: 360px;
+  max-width: 90vw;
+  padding: 20px;
+}
+.modal h3 { margin: 0 0 14px; font-size: 16px; color: #172b4d; }
+.field { margin-bottom: 12px; }
+.field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #172b4d;
+  margin-bottom: 4px;
+}
+.field input[type=text],
+.field textarea,
+.field select,
+.field input[type=date] {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #dfe1e6;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+}
+.field textarea { resize: vertical; min-height: 60px; }
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.btn {
+  padding: 7px 14px;
+  border-radius: 4px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn-primary { background: #0079bf; color: #fff; }
+.btn-secondary { background: #ebecf0; color: #172b4d; }
