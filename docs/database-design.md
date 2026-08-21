@@ -12,6 +12,7 @@ erDiagram
         varchar priority
         date due_date
         varchar status
+        int position
         timestamp created_at
         timestamp updated_at
     }
@@ -26,5 +27,6 @@ erDiagram
 | priority | varchar | 優先度(低/中/高、任意) |
 | due_date | date | 期限(任意) |
 | status | varchar | 未着手 / 進行中 / 完了 のいずれか。ボードの列と対応する |
+| position | int | 同一status内での表示順(0始まり)。列内のドラッグ&ドロップ並び替えに使用する |
 | created_at | timestamp | 作成日時 |
 | updated_at | timestamp | 更新日時 |

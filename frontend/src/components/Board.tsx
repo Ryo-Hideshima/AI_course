@@ -10,9 +10,20 @@ export const COLUMNS = [
 interface Props {
   tasks: Task[];
   onAddClick: (columnId: string) => void;
+  onCardClick: (task: Task) => void;
+  onDeleteTask: (task: Task) => void;
+  onDropAtEnd: (taskId: number, columnId: string) => void;
+  onDropBefore: (draggedTaskId: number, targetTaskId: number, before: boolean) => void;
 }
 
-export function Board({ tasks, onAddClick }: Props) {
+export function Board({
+  tasks,
+  onAddClick,
+  onCardClick,
+  onDeleteTask,
+  onDropAtEnd,
+  onDropBefore,
+}: Props) {
   return (
     <div className="flex items-start gap-4">
       {COLUMNS.map((col) => (
@@ -22,6 +33,10 @@ export function Board({ tasks, onAddClick }: Props) {
           title={col.title}
           tasks={tasks.filter((t) => t.status === col.id)}
           onAddClick={onAddClick}
+          onCardClick={onCardClick}
+          onDeleteTask={onDeleteTask}
+          onDropAtEnd={onDropAtEnd}
+          onDropBefore={onDropBefore}
         />
       ))}
     </div>
