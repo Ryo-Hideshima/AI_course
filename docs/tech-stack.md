@@ -7,6 +7,7 @@
 - スタイリング: Tailwind CSS(v4系、`@tailwindcss/vite`)
 - パッケージ管理: npm
 - 開発サーバーポート: 5173(既定)
+- Lint: oxlint(`npm run lint`)
 
 ## バックエンド
 - 言語: Java 21(LTS)
@@ -14,6 +15,7 @@
 - ビルドツール: Gradle(Gradle Wrapper、Gradle 9.5.1)
 - API形式: REST API
 - サーバーポート: 8080(既定)
+- Lint/フォーマット: Spotless + Google Java Format(`./gradlew spotlessCheck` / `spotlessApply`)
 
 ## データベース
 - PostgreSQL 16(Dockerコンテナで起動)
