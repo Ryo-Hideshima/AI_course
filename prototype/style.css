@@ -28,7 +28,26 @@ h1 {
 }
 .column h2 {
   font-size: 15px;
-  margin: 4px 4px 10px;
+  margin: 4px 4px 6px;
+  color: #172b4d;
+}
+.sort-buttons {
+  display: flex;
+  gap: 6px;
+  margin: 0 4px 10px;
+}
+.sort-btn {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #dfe1e6;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 11px;
+  color: #5e6c84;
+  cursor: pointer;
+}
+.sort-btn:hover {
+  background: #f4f5f7;
   color: #172b4d;
 }
 .cards {
@@ -51,6 +70,8 @@ h1 {
   position: relative;
 }
 .card.dragging { opacity: 0.4; }
+.card.drag-over-top { box-shadow: 0 -3px 0 0 #0079bf, 0 1px 0 rgba(9,30,66,.25); }
+.card.drag-over-bottom { box-shadow: 0 3px 0 0 #0079bf, 0 1px 0 rgba(9,30,66,.25); }
 .card-title {
   font-size: 14px;
   font-weight: 600;
