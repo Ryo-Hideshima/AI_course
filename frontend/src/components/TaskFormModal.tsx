@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { Priority } from "../types/task";
 import type { CreateTaskInput } from "../api/tasks";
-import { COLUMNS } from "./Board";
+import { COLUMNS } from "../constants/columns";
 
 export interface TaskFormValues {
   title: string;
