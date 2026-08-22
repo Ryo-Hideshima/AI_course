@@ -1,2 +1,9 @@
 .claude/settings.local.json
 backend.zip
+
+# Terraform
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/*.tfplan
+infra/*.pem
